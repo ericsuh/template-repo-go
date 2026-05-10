@@ -1,0 +1,38 @@
+version: 2
+
+project_name: template-repo-go
+
+builds:
+  - id: template-repo-go
+    main: ./cmd/template-repo-go
+    binary: template-repo-go
+    goos:
+      - linux
+      - darwin
+      - windows
+    goarch:
+      - amd64
+      - arm64
+
+  - id: template-repo-go-worker
+    main: ./cmd/template-repo-go-worker
+    binary: template-repo-go-worker
+    goos:
+      - linux
+      - darwin
+      - windows
+    goarch:
+      - amd64
+      - arm64
+
+archives:
+  - formats: [tar.gz]
+    format_overrides:
+      - goos: windows
+        formats: [zip]
+
+checksum:
+  name_template: checksums.txt
+
+changelog:
+  disable: true
